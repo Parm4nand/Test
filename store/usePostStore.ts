@@ -55,6 +55,7 @@ export const usePostStore = create<PostState>((set) => ({
     }),
 
   toggleBookmark: (_postId) => {
-    // Bookmark state is managed server-side; this can trigger UI optimistic updates if needed.
+    // Bookmark toggling is managed server-side via direct API calls.
+    // Add optimistic state here if a local bookmarks list is introduced.
   },
 }));
