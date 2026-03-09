@@ -9,6 +9,23 @@ export async function GET(request: NextRequest) {
     const cursor = searchParams.get('cursor');
     const limit = parseInt(searchParams.get('limit') ?? String(POSTS_PER_PAGE), 10);
     const userId = searchParams.get('userId');
+    const postId = searchParams.get('postId');
+
+    // Fetch single post by ID
+    if (postId) {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*, user:profiles(*)')
+        .eq('id', postId)
+        .single();
+      if (error) {
+        if (error.code === 'PGRST116') {
+          return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+        }
+        throw error;
+      }
+      return NextResponse.json({ post: data });
+    }
 
     let query = supabase
       .from('posts')
