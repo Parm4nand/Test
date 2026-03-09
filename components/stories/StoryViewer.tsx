@@ -30,11 +30,11 @@ export default function StoryViewer({ stories, initialIndex = 0, onClose }: Stor
     }
   }, [currentIndex, stories.length, onClose]);
 
-  const goPrev = () => {
+  const goPrev = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex((i) => i - 1);
     }
-  };
+  }, [currentIndex]);
 
   useEffect(() => {
     setProgress(0);
@@ -63,7 +63,7 @@ export default function StoryViewer({ stories, initialIndex = 0, onClose }: Stor
     };
     document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
-  }, [goNext, onClose]);
+  }, [goNext, goPrev, onClose]);
 
   if (!current) return null;
 

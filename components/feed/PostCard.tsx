@@ -104,13 +104,6 @@ export default function PostCard({ post }: PostCardProps) {
         />
       </div>
 
-      {/* Likes */}
-      <div className="px-3 pt-2">
-        <p className="text-sm font-semibold text-gray-900">
-          {post.likes_count.toLocaleString()} {post.likes_count === 1 ? 'like' : 'likes'}
-        </p>
-      </div>
-
       {/* Caption */}
       {post.caption && (
         <div className="px-3 pt-1">
@@ -136,11 +129,13 @@ export default function PostCard({ post }: PostCardProps) {
             View all {post.comments_count} comments
           </Link>
         )}
-        <CommentSection
-          postId={post.id}
-          comments={comments}
-          onAddComment={handleAddComment}
-        />
+        {commentOpen && (
+          <CommentSection
+            postId={post.id}
+            comments={comments}
+            onAddComment={handleAddComment}
+          />
+        )}
       </div>
 
       {/* Timestamp */}

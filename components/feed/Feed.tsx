@@ -1,7 +1,6 @@
 'use client';
 
 import PostCard from '@/components/feed/PostCard';
-import Spinner from '@/components/ui/Spinner';
 import { Post } from '@/types';
 
 interface FeedProps {

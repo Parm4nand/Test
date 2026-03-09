@@ -22,8 +22,8 @@ export default function ProfileGrid({ posts }: ProfileGridProps) {
         <div>
           <p className="text-2xl font-thin text-gray-900">No Posts Yet</p>
           <p className="mt-1 text-sm text-gray-500">
-            When posts are shared, they'll appear here.
-          </p>
+              When posts are shared, they&apos;ll appear here.
+            </p>
         </div>
       </div>
     );
